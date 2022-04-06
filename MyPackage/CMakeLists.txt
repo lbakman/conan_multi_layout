@@ -1,0 +1,28 @@
+cmake_minimum_required(VERSION 3.15)
+# Make sure we can find our custom CMake modules
+list(INSERT CMAKE_MODULE_PATH 0 "${CMAKE_SOURCE_DIR}/cmake" "${CMAKE_BINARY_DIR}")
+list(INSERT CMAKE_PREFIX_PATH 0 "${CMAKE_BINARY_DIR}/conan" "${CMAKE_BINARY_DIR}")
+
+include(MyConan)
+
+project(MyPackage LANGUAGES CXX)
+
+if(CMAKE_ENABLE_CONAN)
+    # Only call conan if we are being built from CMake and not from conan
+    conan_cmake_autodetect(settings)
+    conan_cmake_install(PATH_OR_REFERENCE ${CMAKE_SOURCE_DIR}
+            BUILD missing
+            OPTIONS ${CONAN_RUN_OPTIONS}
+            SETTINGS ${settings})
+endif(CMAKE_ENABLE_CONAN)
+
+if (NOT CONAN_IN_LOCAL_CACHE)
+    message(STATUS "Installing to local build directory")
+    set(CMAKE_INSTALL_PREFIX ${CMAKE_BINARY_DIR})
+endif ()
+
+include(GNUInstallDirs)
+
+add_subdirectory(LibA)
+add_subdirectory(LibB)
+add_subdirectory(LibC)
