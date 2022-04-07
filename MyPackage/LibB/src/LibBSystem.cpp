@@ -12,9 +12,9 @@ const char *LibBSystem::name() const
 
 void LibBSystem::initialize(Poco::Util::Application&)
 {
-	LibA();
-	LibB();
 	std::cout << "Initialising LibB subsystem" << std::endl;
+	LibA(); // Just to illustrate dependencies between components
+	LibB();
 }
 
 void LibBSystem::uninitialize()

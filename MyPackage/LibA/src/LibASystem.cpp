@@ -1,4 +1,5 @@
 #include "MyPackage/LibASystem.h"
+#include "MyPackage/Config.h"
 #include "LibA.h"
 #include <iostream>
 
@@ -11,8 +12,9 @@ const char *LibASystem::name() const
 
 void LibASystem::initialize(Poco::Util::Application&)
 {
-	LibA();
 	std::cout << "Initialising LibA subsystem" << std::endl;
+	std::cout << "- Config: " << MY_CONFIG_OPTION << std::endl;
+	LibA();
 }
 
 void LibASystem::uninitialize()

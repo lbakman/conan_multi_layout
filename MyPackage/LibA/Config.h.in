@@ -1,0 +1,7 @@
+#ifndef MYPROJECT_LIBACONFIG_H
+#define MYPROJECT_LIBACONFIG_H
+
+// Not really a config option, but I need to make sure it is picked up by the generator
+#define MY_CONFIG_OPTION 1
+
+#endif //MYPROJECT_LIBACONFIG_H

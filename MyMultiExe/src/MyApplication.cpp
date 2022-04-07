@@ -1,10 +1,14 @@
 #include "MyApplication.h"
 #include "MyPackage/LibASystem.h"
+#include "MyPackage/LibBSystem.h"
+#include "MyPackage/LibCSystem.h"
 #include <iostream>
 
 MyApplication::MyApplication()
 {
 	addSubsystem(new MyPackage::LibASystem());
+	addSubsystem(new MyPackage::LibBSystem());
+	addSubsystem(new MyPackage::LibCSystem());
 }
 
 MyApplication::~MyApplication() = default;

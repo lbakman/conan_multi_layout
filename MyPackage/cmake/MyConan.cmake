@@ -4,7 +4,7 @@ if(DEFINED __INCLUDED_MY_CONAN_CMAKE)
 endif()
 set(__INCLUDED_MY_CONAN_CMAKE TRUE)
 
-option(CMAKE_ENABLE_CONAN  "Enable support for Conan within CMake" ON)
+option(CMAKE_ENABLE_CONAN "Enable support for Conan within CMake" ON)
 if(CMAKE_ENABLE_CONAN)
     # Download automatically, you can also just copy the conan.cmake file
     if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")

@@ -1,6 +1,8 @@
 
 find_package(Poco REQUIRED Foundation Util)
 
+configure_file(Config.h.in "${CMAKE_CURRENT_BINARY_DIR}/include/MyPackage/Config.h" @ONLY)
+
 file(GLOB HEADERS src/*.h)
 file(GLOB SOURCES src/*.cpp)
 file(GLOB_RECURSE PUBLIC_HEADERS include/*.h ${CMAKE_CURRENT_BINARY_DIR}/include/*.h)
@@ -18,16 +20,11 @@ target_include_directories(LibA
 target_link_libraries(LibA PUBLIC Poco::Util)
 
 install(TARGETS LibA)
-
-#install(
-#        TARGETS LibA
-#        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-#        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-#        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-#        INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
-#)
-
 install(
-        DIRECTORY include
+        DIRECTORY include/
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+)
+install(
+        DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/
         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )

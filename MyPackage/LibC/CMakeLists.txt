@@ -19,7 +19,7 @@ target_link_libraries(LibC PUBLIC Poco::Util LibA)
 
 install(TARGETS LibC)
 install(
-        DIRECTORY include
+        DIRECTORY include/
         DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
 )
 

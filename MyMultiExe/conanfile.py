@@ -21,14 +21,13 @@ class MyMultiExeConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
 
     # Sources are located in the same place as this recipe, copy them to the recipe
-    exports_sources = "CMakeLists.txt", "src/*", "include/*"
+    exports_sources = "CMakeLists.txt", "src/*", "cmake/*"
 
     def layout(self):
         cmake_layout(self)
 
     def generate(self):
         tc = CMakeToolchain(self)
-        tc.variables["CMAKE_ENABLE_CONAN"] = "OFF"
         tc.generate()
         # This generates "foo-config.cmake" and "bar-config.cmake" in self.generators_folder
         deps = CMakeDeps(self)
@@ -36,7 +35,7 @@ class MyMultiExeConan(ConanFile):
 
     def build(self):
         cmake = CMake(self)
-        cmake.configure()
+        cmake.configure(variables={"CMAKE_ENABLE_CONAN": "OFF"})
         cmake.build()
 
     def package(self):
